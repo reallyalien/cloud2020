@@ -1,12 +1,18 @@
 package com.ot.springcloud.controller;
 
+
+
 import com.ot.springcloud.entities.CommonResult;
 import com.ot.springcloud.entities.Payment;
 import com.ot.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/payment")
@@ -15,7 +21,8 @@ public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
-
+    @Autowired
+    private DiscoveryClient discoveryClient;//spring的discovery
     @Value("${server.port}")
     private String servePort;
     @PostMapping("/create")
@@ -37,5 +44,18 @@ public class PaymentController {
         }else {
             return new CommonResult(444,"查询数据失败，查询id:"+id,null);
         }
+    }
+
+    @GetMapping("/discovery")
+    public Object discovery(){
+        List<String> services = discoveryClient.getServices();
+        services.forEach((item)->{
+            log.info(item);
+        });
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        instances.forEach((item)->{
+            log.info(item.getServiceId()+"\t"+item.getHost()+"\t"+item.getPort()+"\t"+item.getUri());
+        });
+        return this.discoveryClient;
     }
 }
