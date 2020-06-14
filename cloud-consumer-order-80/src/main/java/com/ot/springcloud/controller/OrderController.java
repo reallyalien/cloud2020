@@ -1,6 +1,5 @@
 package com.ot.springcloud.controller;
 
-import com.netflix.discovery.converters.Auto;
 import com.ot.springcloud.entities.CommonResult;
 import com.ot.springcloud.entities.Payment;
 import com.ot.springcloud.lb.LoadBalance;
