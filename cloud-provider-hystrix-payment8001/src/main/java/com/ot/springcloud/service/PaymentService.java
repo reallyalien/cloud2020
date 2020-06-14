@@ -46,10 +46,15 @@ public class PaymentService {
     //=====服务熔断
     @HystrixCommand(fallbackMethod = "paymentCircuitBreaker_fallback", commandProperties = {
             @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),// 是否开启断路器
-            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),// 请求次数
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "20"),// 请求次数
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), // 时间窗口期，时间范围
-            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),// 失败率达到多少后跳闸
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50"),// 失败率达到多少后跳闸
     })
+    /**
+     * 在时间窗口期内，如果调用次数达不到请求阈值，就算都错误，也不会发生熔断。
+     * 默认10s内发生20次请求，有50%的请求都是错误的，则直接熔断该服务，一段时间之后，熔断器四是半开状态，让其中一个请求进行转发，
+     * 如果转发成功，则熔断器关闭，若失败，继续关闭
+     */
     public String paymentCircuitBreaker(@PathVariable("id") Integer id) {
         if (id < 0) {
             throw new RuntimeException("******id 不能负数");
