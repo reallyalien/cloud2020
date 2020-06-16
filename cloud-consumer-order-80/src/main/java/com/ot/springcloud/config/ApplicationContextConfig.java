@@ -11,12 +11,12 @@ import org.springframework.web.client.RestTemplate;
 public class ApplicationContextConfig {
 
     @Bean
-//    @LoadBalanced //负载均衡，默认轮询
+    @LoadBalanced //负载均衡，默认轮询,不加这个注解，rest无法通过微服务名称去寻找服务
     public RestTemplate restTemplate(){
         return new RestTemplate();
     }
 
-    public IRule iRule(){
-        return new RandomRule();
-    }
+//    public IRule iRule(){
+//        return new RandomRule();
+//    }
 }

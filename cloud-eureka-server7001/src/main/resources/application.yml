@@ -11,6 +11,6 @@ eureka:
 #      defaultZone: http://eureka7002.com:7002/eureka/
       #单机
       defaultZone: http://eureka7001.com:7001/eureka/
-  server:
-    # enable-self-preservation: true  eureka的自我保护机制，默认开启
-#     defaultZone: http://eureka7001.com:7001/eureka/
+#  server:
+#    # enable-self-preservation: true  eureka的自我保护机制，默认开启
+##     defaultZone: http://eureka7001.com:7001/eureka/
