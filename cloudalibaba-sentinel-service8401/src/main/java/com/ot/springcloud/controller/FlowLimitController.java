@@ -42,7 +42,7 @@ public class FlowLimitController {
         int age = 10/0;
         return "------testE";
     }
-    @GetMapping("/testHost")
+    @GetMapping("/testHost")//指定sentinel的value的值才能走blockhandle
     @SentinelResource(value = "testHost",blockHandler = "deal_testhostkey")//处理的是sentinel控制台违规报的错误，并不java运行时异常
     public String testHostKey(@RequestParam(value = "p1",required = false)String p1,
                               @RequestParam(value = "p2",required = false)String p2){
