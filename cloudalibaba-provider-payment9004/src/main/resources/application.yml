@@ -1,5 +1,6 @@
 server:
-  port: 9001
+  port: 9004
+
 spring:
   application:
     name: nacos-payment-provider
@@ -7,6 +8,7 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848 #配置Nacos地址
+
 management:
   endpoints:
     web:

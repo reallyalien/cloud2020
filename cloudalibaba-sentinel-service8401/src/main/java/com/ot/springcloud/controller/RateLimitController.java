@@ -32,7 +32,8 @@ public class RateLimitController {
     @GetMapping("/rateLimit/customerBlockHandler")
     @SentinelResource(value = "customerBlockHandler",
             blockHandlerClass = CustomerBlockHandle.class,  //sentinel限流必须对应customerBlockHandler，否则还是block by sentinel
-            blockHandler = "handlerException2")          //此注解不支持privite方法
+            blockHandler = "handlerException2"
+    )          //此注解不支持privite方法
     public CommonResult customerBlockHandler()
     {
         return new CommonResult(200,"按客戶自定义",new Payment(2020L,"serial003"));
