@@ -2,7 +2,6 @@ package com.ot.springcloud.handler;
 
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.ot.springcloud.entities.CommonResult;
-import com.sun.deploy.security.BlockedException;
 import org.springframework.stereotype.Component;
 
 /**
