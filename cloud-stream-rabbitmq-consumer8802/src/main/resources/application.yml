@@ -21,7 +21,7 @@ spring:
           destination: studyExchange # 表示要使用的Exchange名称定义
           content-type: application/json # 设置消息类型，本次为对象json，如果是文本则设置“text/plain”
           binder: defaultRabbit # 设置要绑定的消息服务的具体设置
-#          group: a   #自带持久化，在服务启动之后，可以拉去未消费的消息进行消费
+          group: a   #自带持久化，在服务启动之后，可以拉去未消费的消息进行消费
 
 
 
@@ -36,5 +36,5 @@ eureka:
     prefer-ip-address: true     # 访问的路径变为IP地址
 
 
-
+#在springcloud-stream当中，同一个group当中的消费者是竞争关系，就能够保证消息只被一个消费者消费，不同组是可以重复消费的
 

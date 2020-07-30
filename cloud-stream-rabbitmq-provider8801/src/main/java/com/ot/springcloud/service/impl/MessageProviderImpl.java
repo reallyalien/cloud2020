@@ -10,7 +10,7 @@ import org.springframework.messaging.support.MessageBuilder;
 
 import java.util.UUID;
 
-@EnableBinding(Source.class)//定义消息的推送管道,channel与交换机绑定在一起
+@EnableBinding(Source.class)//定义消息的推送管道,channel与交换机绑定在一起  source channel binder
 public class MessageProviderImpl implements IMessageProvider {
 
 
