@@ -8,7 +8,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 @EnableConfigServer
 public class ConfigCenterMain3344 {
     public static void main(String[] args) {
-//111
+//111222
         SpringApplication.run(ConfigCenterMain3344.class,args);
     }
 }
