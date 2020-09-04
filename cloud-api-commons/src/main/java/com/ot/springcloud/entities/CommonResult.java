@@ -12,7 +12,7 @@ public class CommonResult<T> {
     private String msg;
     private T data;
 
-//111
+//111222
     public CommonResult(Integer code,String msg){
         this(code,msg,null);
     }
