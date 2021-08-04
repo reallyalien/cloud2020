@@ -10,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class ApplicationContextConfig {
 
+    //ribbon本质就是restTemplate+loadbalance，因此restTemplate必须加 @LoadBalanced
+
     @Bean
     @LoadBalanced //负载均衡，默认轮询,不加这个注解，rest无法通过微服务名称去寻找服务
     public RestTemplate restTemplate(){

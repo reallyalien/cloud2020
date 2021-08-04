@@ -50,6 +50,21 @@ public class OrderController {
         return null;
     }
 
+    /**
+     * 使用ribbon的负载均衡，不能指定url进行访问接口
+     *
+     * @return
+     */
+    @GetMapping("/selfLb")
+    public String selfLb() {
+        List<ServiceInstance> serviceInstances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        if (serviceInstances == null || serviceInstances.size() <= 0) {
+            return "当前服务实例为空";
+        }
+        String response = restTemplate.getForObject(PAYMENT_URl + "/payment/lb", String.class);
+        return response;
+    }
+
     @GetMapping("/lb")
     public String lb() {
         List<ServiceInstance> serviceInstances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
@@ -58,7 +73,7 @@ public class OrderController {
         }
         ServiceInstance serviceInstance = loadBalance.instances(serviceInstances);
         URI uri = serviceInstance.getUri();
-        String response = restTemplate.getForObject(uri+"/payment/lb", String.class);
+        String response = restTemplate.getForObject(uri + "/payment/lb", String.class);
         return response;
     }
 }

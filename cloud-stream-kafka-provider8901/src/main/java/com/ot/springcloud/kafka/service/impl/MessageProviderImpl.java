@@ -16,12 +16,13 @@ public class MessageProviderImpl implements IMessageProvider {
 
 
     @Autowired
-    private MessageChannel output;//消息的发送channel
+    private Source source;//消息的发送channel
+
     @Override
     public String send() {
-        String msg= UUID.randomUUID().toString();
-        output.send(MessageBuilder.withPayload(msg).build());
-        System.out.println("msg:"+msg);
+        String msg = UUID.randomUUID().toString();
+        source.output().send(MessageBuilder.withPayload(msg).build());
+        System.out.println("msg:" + msg);
         return msg;
     }
 }

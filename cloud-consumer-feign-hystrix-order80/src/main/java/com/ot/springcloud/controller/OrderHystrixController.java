@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/consumer")
-@DefaultProperties(defaultFallback = "payment_Global_FallbackMethod")
+//@DefaultProperties(defaultFallback = "payment_Global_FallbackMethod")
 public class OrderHystrixController {
 
     @Autowired
@@ -27,9 +27,9 @@ public class OrderHystrixController {
 //    @HystrixCommand(fallbackMethod = "paymentTimeOutFallbackMethod", commandProperties = {
 //            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1500")
 //    })
-    @HystrixCommand//默认使用全局的fallback
+//    @HystrixCommand//默认使用全局的fallback
     public String paymentInfo_TimeOut(@PathVariable("id") Integer id) {
-        int age = 10 / 0;
+//        int age = 10 / 0;
         String result = paymentHystrixService.paymentInfo_TimeOut(id);
         return result;
     }

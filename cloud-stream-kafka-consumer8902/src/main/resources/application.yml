@@ -13,7 +13,7 @@ spring:
       bindings:
         input:      #这里用stream给我们提供的默认output，后面会讲到自定义output
           destination: test1    #消息发往的目的地
-          content-type: text/plain    #消息发送的格式，接收端不用指定格式，但是发送端要 application/json
+          content-type: application/json   #消息发送的格式，接收端不用指定格式，但是发送端要 application/json
           group: a
 eureka:
   client: # 客户端进行Eureka注册的配置
@@ -22,5 +22,5 @@ eureka:
   instance:
     lease-renewal-interval-in-seconds: 2 # 设置心跳的时间间隔（默认是30秒）
     lease-expiration-duration-in-seconds: 5 # 如果现在超过了5秒的间隔（默认是90秒）
-    instance-id: send-8901.com  # 在信息列表时显示主机名称
+    instance-id: consumer-8901.com  # 在信息列表时显示主机名称
     prefer-ip-address: true     # 访问的路径变为IP地址

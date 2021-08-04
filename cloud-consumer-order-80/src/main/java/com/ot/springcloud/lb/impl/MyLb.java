@@ -9,10 +9,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 public class MyLb implements LoadBalance {
+
     private AtomicInteger atomicInteger = new AtomicInteger(0);
 
     /**
      * CAS操作
+     *
      * @return
      */
     public final int getAndIncrement() {

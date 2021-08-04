@@ -11,7 +11,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 @Component
-@EnableBinding(Sink.class)//定义消息的接收
+@EnableBinding(MySink.class)//定义消息的接收
 public class ReceiveMessageController8802 {
 
     @Value("${server.port}")
@@ -23,8 +23,16 @@ public class ReceiveMessageController8802 {
      * @param message
      * @StreamListener注解的condition属性指明分发条件, eg:condition = "headers['contentType']=='Message'"
      */
-    @StreamListener(target = Sink.INPUT)
-    public void input(Message<String> message) {
-        System.out.println("消费者8802，msg:" + message.getPayload() + "\t" + port);
+    @StreamListener(target = MySink.INPUT)
+    public void input1(Message<String> message) {
+        System.out.println("消费者8802-1，msg:" + message.getPayload() + "\t" + port);
     }
+
+    @StreamListener(target = MySink.INPUT)
+    public void input2(Message<String> message) {
+        System.out.println("消费者8802-2，msg:" + message.getPayload() + "\t" + port);
+    }
+    /**
+     * 一条消息会发送给上面的2个方法，input的messageChannel是 SubscribableChannel 类型，队列当中的一个消息会被发送给所有的订阅者
+     */
 }

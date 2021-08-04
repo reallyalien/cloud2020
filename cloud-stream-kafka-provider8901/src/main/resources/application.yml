@@ -13,7 +13,17 @@ spring:
       bindings:
         output:      #这里用stream给我们提供的默认output，后面会讲到自定义output
           destination: test1    #消息发往的目的地  这个可以定义多个
-          content-type: text/plain    #消息发送的格式，接收端不用指定格式，但是发送端要 application/json
+          content-type: application/json    #消息发送的格式，接收端不用指定格式，但是发送端要 application/json
+  datasource:
+    schema: classpath:/org/springframework/batch/core/schema-mysql.sql
+    url: jdbc:mysql://127.0.0.1:3306/clouddb01
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    username: root
+  task:
+    execution:
+      pool:
+        core-size: 10
 eureka:
   client: # 客户端进行Eureka注册的配置
     service-url:

@@ -7,6 +7,8 @@ import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @EnableBinding(Sink.class)//定义消息的接收
 public class ReceiveMessageController8902 {
@@ -15,7 +17,8 @@ public class ReceiveMessageController8902 {
     private String port;
 
     @StreamListener(Sink.INPUT)
-    public void input(Message<String> message){
-        System.out.println("消费者8902，msg:"+message.getPayload()+"\t"+port);
+    public void input(Message<List<? extends Integer>> message) {
+//        System.out.println("消费者8902，msg:" + message.getPayload() + "\t" + port);
+        System.out.println(Thread.currentThread() + "接收到数据");
     }
 }

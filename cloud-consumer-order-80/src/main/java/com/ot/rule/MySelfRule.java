@@ -9,7 +9,8 @@ import org.springframework.context.annotation.Configuration;
 public class MySelfRule {
 
     @Bean
-    public IRule myRule(){
+    public IRule myRule() {
+        // choose 当中lb是 ZoneAwareLoadBalancer
         return new RandomRule();
     }
 }

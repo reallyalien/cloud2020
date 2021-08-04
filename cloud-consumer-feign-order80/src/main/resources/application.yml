@@ -13,8 +13,10 @@ ribbon:
   ReadTimeout: 5000
   #指的是建立连接后从服务器读取到可用资源所用的时间
   ConnectTimeout: 5000
-
 logging:
   level:
     # openfeign日志以什么级别监控哪个接口
     com.ot.springcloud.service.PaymentFeignService: debug
+feign:
+  okhttp:
+    enabled: true

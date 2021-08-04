@@ -61,6 +61,12 @@ public class PaymentController {
     }
     @GetMapping("/lb")
     public String lb(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+      log.info("payment");
         return servePort;
     }
 
