@@ -1,5 +1,6 @@
 package com.ot.springcloud.controller;
 
+import com.ot.springcloud.config.MySink;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
